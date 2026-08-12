@@ -46,3 +46,11 @@ A self-guided on-demand demo is available at [**kasmweb.com**](https://www.kasmw
 # Reporting Issues
 
 To report any issues for this repository, please use our central issue tracker: **[Kasm Workspaces Issue Tracker](https://github.com/kasmtech/workspaces-issues/issues)**
+
+### To use in a codespace
+Run this: docker build -t my-chrome . 
+(Note: the Dockerfile file is just z-ai_thing.dockerfile)
+Then run:
+docker run -d -p 6901:6901 -e VNC_PW=1234 my-chrome
+
+Password is 1234
