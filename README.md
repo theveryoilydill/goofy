@@ -47,10 +47,37 @@ A self-guided on-demand demo is available at [**kasmweb.com**](https://www.kasmw
 
 To report any issues for this repository, please use our central issue tracker: **[Kasm Workspaces Issue Tracker](https://github.com/kasmtech/workspaces-issues/issues)**
 
-### To use in a codespace
-Run this: docker build -t my-chrome . 
-(Note: the Dockerfile file is just z-ai_thing.dockerfile)
-Then run:
-docker run -d -p 6901:6901 -e VNC_PW=1234 my-chrome
+### To run this container in GitHub Codespaces or locally
+Build the image:
 
-Password is 1234
+```bash
+docker build -t my-chrome .
+```
+
+Then start the container and publish the browser-facing port:
+
+```bash
+docker run -d --name chrome \
+  --shm-size=1g \
+  --security-opt seccomp=unconfined \
+  -p 8080:8080 \
+  -e VNC_PW=123456 \
+  my-chrome
+```
+
+For GitHub Codespaces, use the forwarded port 8080 in the Ports tab and open the generated browser URL, such as:
+
+```text
+https://<your-codespace-name>-8080.app.github.dev
+```
+
+If you are testing locally, open `http://localhost:8080`.
+
+The browser will present the Kasm login page. Use:
+
+- User: `kasm_user`
+- Password: `123456`
+
+> The proxy on port 8080 forwards to the KasmVNC session on 6901. GitHub Codespaces can only proxy a normal web listener, so the browser-facing URL must be the HTTP proxy port rather than the raw VNC port.
+
+Human note: to restart the container after it stopped, do: docker ps -a, and find the container id then do: docker start [container id]
