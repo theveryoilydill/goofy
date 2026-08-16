@@ -1,4 +1,4 @@
-FROM kasmweb/chrome:1.18.0
+FROM kasmweb/brave:1.18.0
 
 EXPOSE 6901 8080
 

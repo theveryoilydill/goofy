@@ -51,18 +51,18 @@ To report any issues for this repository, please use our central issue tracker: 
 Build the image:
 
 ```bash
-docker build -t my-chrome .
+docker build -t brave .
 ```
 
 Then start the container and publish the browser-facing port:
 
 ```bash
-docker run -d --name chrome \
+docker run -d --name brave \
   --shm-size=1g \
   --security-opt seccomp=unconfined \
   -p 8080:8080 \
   -e VNC_PW=123456 \
-  my-chrome
+  brave
 ```
 
 For GitHub Codespaces, use the forwarded port 8080 in the Ports tab and open the generated browser URL, such as:
